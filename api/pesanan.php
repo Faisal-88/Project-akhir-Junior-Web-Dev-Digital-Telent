@@ -17,15 +17,7 @@ $success = $koneksi->real_connect($host, $user, $pass, $db, $port, NULL, MYSQLI_
 if (!$success) {
     die("Koneksi gagal: " . $koneksi->connect_error);
 }
-
-// COBA TEST QUERY (Hapus ini jika sudah berhasil tampil)
-$result = $koneksi->query("SELECT * FROM pesanan");
-if ($result) {
-    echo "<h1>Koneksi Berhasil! Data ditemukan:</h1>";
-    while($row = $result->fetch_assoc()) {
-        echo "Pesanan: " . $row['Pesanan'] . "<br>"; // Sesuaikan nama kolom tabel kamu
-    }
-} else {
+else {
     echo "Koneksi sukses, tapi gagal ambil data: " . $koneksi->error;
 
 
