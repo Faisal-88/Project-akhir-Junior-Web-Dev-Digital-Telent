@@ -8,10 +8,10 @@ $port       = "4000";
 // Mengaktifkan SSL (TiDB Cloud mewajibkan ini untuk koneksi aman)
 $koneksi = mysqli_init();
 mysqli_ssl_set($koneksi, NULL, NULL, NULL, NULL, NULL);
-mysqli_real_connect($koneksi, $host, $user, $pass, $db, $port);
+$success = mysqli_real_connect($koneksi, $host, $user, $pass, $db, $port);
 
-if (mysqli_connect_errno()) {
-    die("Koneksi ke TiDB Cloud gagal: " . mysqli_connect_error());
+if (!$success) {
+    die("Koneksi gagal: " . mysqli_connect_error());
 // }else{
 //     echo"koneksi bisa";
 }
