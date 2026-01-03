@@ -1,12 +1,17 @@
 <?php
-$host       = "localhost";
-$user       = "root";
-$pass       = "";
-$db         = "db_pesanan";
+$host       = "gateway01.ap-southeast-1.prod.aws.tidbcloud.com";
+$user       = "3QSp3qi6JdHmEaT.root";
+$pass       = "89bsOyEj454DU0tq";
+$db         = "test";
+$port       = "4000";
 
-$koneksi    = mysqli_connect($host, $user, $pass, $db);
-if (!$koneksi) { //cek koneksi
-    die("Tidak bisa terkoneksi ke database");
+// Mengaktifkan SSL (TiDB Cloud mewajibkan ini untuk koneksi aman)
+$koneksi = mysqli_init();
+mysqli_ssl_set($koneksi, NULL, NULL, NULL, NULL, NULL);
+mysqli_real_connect($koneksi, $host, $user, $pass, $db, $port);
+
+if (mysqli_connect_errno()) {
+    die("Koneksi ke TiDB Cloud gagal: " . mysqli_connect_error());
 // }else{
 //     echo"koneksi bisa";
 }
