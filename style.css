@@ -45,3 +45,6 @@
   padding-top: 20%;
   color: #fff;
 }
+html {
+    scroll-behavior: smooth;
+}
