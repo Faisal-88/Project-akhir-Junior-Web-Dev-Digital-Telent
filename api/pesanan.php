@@ -114,6 +114,8 @@ if (isset($_POST['simpan'])) {
             <li class="nav-item"><a class="nav-link" href="../index.html">HOME</a></li>
             <li class="nav-item"><a class="nav-link" href="../menu.html">DAFTAR MENU</a></li>
             <li class="nav-item"><a class="nav-link active" href="pesanan.php">PESANAN</a></li>
+            <li class="nav-item"><a class="nav-link active" href="#tentang">TENTANG KAMI</a></li>
+            <li class="nav-item"><a class="nav-link active" href="#kontak">KONTAK KAMI</a></li>
           </ul>
         </div>
       </div>
