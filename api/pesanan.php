@@ -123,8 +123,19 @@ if (isset($_POST['simpan'])) {
         <div class="card">
             <div class="card-header">Create / Edit Data</div>
             <div class="card-body">
-                <?php if ($error) { echo "<div class='alert alert-danger'>$error</div>"; header("refresh:3;url=pesanan.php"); } ?>
-                <?php if ($sukses) { echo "<div class='alert alert-success'>$sukses</div>"; header("refresh:3;url=pesanan.php"); } ?>
+                <?php if ($error) { ?>
+    <div class="alert alert-danger" role="alert">
+        <?php echo $error ?>
+    </div>
+    <script>setTimeout(function(){ window.location.href='pesanan.php'; }, 3000);</script>
+    <?php } ?>
+
+    <?php if ($sukses) { ?>
+        <div class="alert alert-success" role="alert">
+        <?php echo $sukses ?>
+        </div>
+        <script>setTimeout(function(){ window.location.href='pesanan.php'; }, 3000);</script>
+    <?php } ?>
                 
                 <form action="" method="POST">
                     <div class="mb-3 row">
