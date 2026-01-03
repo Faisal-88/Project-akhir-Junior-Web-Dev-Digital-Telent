@@ -5,15 +5,30 @@ $pass       = "89bsOyEj454DU0tq";
 $db         = "test";
 $port       = "4000";
 
-// Mengaktifkan SSL (TiDB Cloud mewajibkan ini untuk koneksi aman)
+// Menggunakan mysqli dengan mode objek agar SSL lebih stabil
 $koneksi = mysqli_init();
-mysqli_ssl_set($koneksi, NULL, NULL, NULL, NULL, NULL);
-$success = mysqli_real_connect($koneksi, $host, $user, $pass, $db, $port);
+
+// Tambahkan opsi SSL secara spesifik
+$koneksi->options(MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, true);
+
+// Lakukan koneksi
+$success = $koneksi->real_connect($host, $user, $pass, $db, $port, NULL, MYSQLI_CLIENT_SSL);
 
 if (!$success) {
-    die("Koneksi gagal: " . mysqli_connect_error());
-// }else{
-//     echo"koneksi bisa";
+    die("Koneksi gagal: " . $koneksi->connect_error);
+}
+
+// COBA TEST QUERY (Hapus ini jika sudah berhasil tampil)
+$result = $koneksi->query("SELECT * FROM pesanan");
+if ($result) {
+    echo "<h1>Koneksi Berhasil! Data ditemukan:</h1>";
+    while($row = $result->fetch_assoc()) {
+        echo "Pesanan: " . $row['Pesanan'] . "<br>"; // Sesuaikan nama kolom tabel kamu
+    }
+} else {
+    echo "Koneksi sukses, tapi gagal ambil data: " . $koneksi->error;
+
+
 }
 $Nama            = "";
 $Pesanan         = "";
