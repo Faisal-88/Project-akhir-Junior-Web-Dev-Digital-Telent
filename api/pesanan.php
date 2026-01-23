@@ -1,4 +1,9 @@
 <?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 $host   = "gateway01.ap-southeast-1.prod.aws.tidbcloud.com";
 $user   = "3QSp3qi6JdHmEaT.root";
 $pass   = "89bsOyEj454DU0tq";
