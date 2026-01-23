@@ -5,12 +5,15 @@ $pass   = "89bsOyEj454DU0tq";
 $db     = "test";
 $port   = "4000";
 
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+try{
 $koneksi = mysqli_init();
-$koneksi->options(MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, true);
+$koneksi->options(MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, false);
 $success = $koneksi->real_connect($host, $user, $pass, $db, $port, NULL, MYSQLI_CLIENT_SSL);
 
-if (!$success) {
-    die("Koneksi gagal: " . $koneksi->connect_error);
+} catch (Exception $e) {
+    echo "Koneksi Gagal: " . $e->getMessage();
+    exit();
 }
 
 // Inisialisasi variabel agar tidak error saat pertama buka
